@@ -28,6 +28,8 @@ fn main() {
     pb.finish_with_message("done");
 }
 
+type Point3 = Vec3;
+
 struct Vec3 {
     x: f64,
     y: f64,
