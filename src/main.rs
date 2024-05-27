@@ -28,9 +28,21 @@ fn main() {
     pb.finish_with_message("done");
 }
 
+pub struct Ray {
+    pub origin: Point3,
+    pub direction: Point3,
+}
+
+impl Ray {
+    pub fn at(&self, target: Point3) -> Point3 {
+        self.origin + self.direction * target
+    }
+}
+
 type Point3 = Vec3;
 
-struct Vec3 {
+#[derive(Clone, Copy)]
+pub struct Vec3 {
     x: f64,
     y: f64,
     z: f64,
@@ -135,5 +147,11 @@ impl Mul<f64> for Vec3 {
             y: self.y * rhs,
             z: self.z * rhs,
         }
+    }
+}
+
+impl PartialEq for Vec3 {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y && self.z == other.z
     }
 }
